@@ -1,0 +1,42 @@
+# bonus() CFG — Graphviz эх (зураг нь cfg-bonus.png, PIL-ээр рендерлэсэн)
+# Зангилаа бүр файлын мөрийн дугаартай; ирмэг бүр түүнийг дайрдаг тестийн метод нэртэй.
+digraph bonus {
+  rankdir=TB;
+  node [shape=box];
+  n32 [label="32: attendance == null || threshold < 0"];
+  n33 [label="33: throw IllegalArgumentException"];
+  n3537 [label="35: present = 0\n36: streak = 0\n37: best = 0"];
+  n38 [label="38: for (int a : attendance)\ncondition: next element? (attendance p-use)\nstep: a = next element (a def)"];
+  n39 [label="39: a > 0"];
+  n4041 [label="40: present = present + 1\n41: streak = streak + 1"];
+  n42 [label="42: streak > best"];
+  n43 [label="43: best = streak"];
+  n46 [label="46: streak = 0"];
+  n49 [label="49: score = 0"];
+  n50 [label="50: present >= threshold"];
+  n51 [label="51: score = 5"];
+  n53 [label="53: best >= 5"];
+  n54 [label="54: score = score + 3"];
+  n56 [label="56: return score"];
+
+  n32 -> n33 [label="T: b5_nullInput_throws, b6_negativeThreshold_throws"];
+  n32 -> n3537 [label="F: b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n33 -> end [label="b5_nullInput_throws, b6_negativeThreshold_throws"];
+  n3537 -> n38 [label="all bonus tests"];
+  n38 -> n39 [label="T: b2_allDefs_sixStreak, b4_allAbsent, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n38 -> n49 [label="F: b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n39 -> n4041 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n39 -> n46 [label="F: b4_allAbsent, b8_longStreakBreak"];
+  n4041 -> n42 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n42 -> n43 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n42 -> n38 [label="F: (no test - infeasible: best >= streak invariant)"];
+  n43 -> n38 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n46 -> n38 [label="b4_allAbsent, b8_longStreakBreak"];
+  n49 -> n50 [label="all non-throwing tests"];
+  n50 -> n51 [label="T: b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n50 -> n53 [label="F: b4_allAbsent"];
+  n51 -> n53 [label="b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n53 -> n54 [label="T: b2_allDefs_sixStreak, b8_longStreakBreak"];
+  n53 -> n56 [label="F: b1_allDefs_emptyArray, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b9_thresholdZero"];
+  n54 -> n56 [label="b2_allDefs_sixStreak, b8_longStreakBreak"];
+}
