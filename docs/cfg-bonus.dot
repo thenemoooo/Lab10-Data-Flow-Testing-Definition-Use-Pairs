@@ -25,18 +25,18 @@ digraph bonus {
   n3537 -> n38 [label="all bonus tests"];
   n38 -> n39 [label="T: b2_allDefs_sixStreak, b4_allAbsent, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
   n38 -> n49 [label="F: b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
-  n39 -> n4041 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n39 -> n4041 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero, b11_streakNotGreaterAfterBreak, b12_streakBonusWithoutThreshold"];
   n39 -> n46 [label="F: b4_allAbsent, b8_longStreakBreak"];
-  n4041 -> n42 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
-  n42 -> n43 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
-  n42 -> n38 [label="F: (no test - infeasible: best >= streak invariant)"];
-  n43 -> n38 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
+  n4041 -> n42 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero, b11_streakNotGreaterAfterBreak, b12_streakBonusWithoutThreshold"];
+  n42 -> n43 [label="T: b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero, b12_streakBonusWithoutThreshold"];
+  n42 -> n38 [label="F: b11_streakNotGreaterAfterBreak"];
+  n43 -> n38 [label="b2_allDefs_sixStreak, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero, b12_streakBonusWithoutThreshold"];
   n46 -> n38 [label="b4_allAbsent, b8_longStreakBreak"];
   n49 -> n50 [label="all non-throwing tests"];
   n50 -> n51 [label="T: b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
-  n50 -> n53 [label="F: b4_allAbsent"];
+  n50 -> n53 [label="F: b4_allAbsent, b12_streakBonusWithoutThreshold"];
   n51 -> n53 [label="b1_allDefs_emptyArray, b2_allDefs_sixStreak, b3_emptyArray, b7_exactThreshold, b8_longStreakBreak, b9_thresholdZero"];
-  n53 -> n54 [label="T: b2_allDefs_sixStreak, b8_longStreakBreak"];
-  n53 -> n56 [label="F: b1_allDefs_emptyArray, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b9_thresholdZero"];
-  n54 -> n56 [label="b2_allDefs_sixStreak, b8_longStreakBreak"];
+  n53 -> n54 [label="T: b2_allDefs_sixStreak, b8_longStreakBreak, b12_streakBonusWithoutThreshold"];
+  n53 -> n56 [label="F: b1_allDefs_emptyArray, b3_emptyArray, b4_allAbsent, b7_exactThreshold, b9_thresholdZero, b11_streakNotGreaterAfterBreak"];
+  n54 -> n56 [label="b2_allDefs_sixStreak, b8_longStreakBreak, b12_streakBonusWithoutThreshold"];
 }

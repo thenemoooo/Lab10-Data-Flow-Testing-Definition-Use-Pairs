@@ -67,4 +67,16 @@ class BonusTest {
     void b9_thresholdZero() {
         assertEquals(5, DataFlowTargets.bonus(new int[]{1}, 0));
     }
+
+    @Test
+    @DisplayName("B11 all-DU-pairs: bonus([1,0,1],0)=5 - (streak,41->42,F), (best,43->42,F): streak=1 <= best=1 after break")
+    void b11_streakNotGreaterAfterBreak() {
+        assertEquals(5, DataFlowTargets.bonus(new int[]{1, 0, 1}, 0));
+    }
+
+    @Test
+    @DisplayName("B12 all-DU-pairs: bonus([1,1,1,1,1],6)=3 - (score,49->54,c): present=5 < threshold=6 but best=5 >= 5")
+    void b12_streakBonusWithoutThreshold() {
+        assertEquals(3, DataFlowTargets.bonus(new int[]{1, 1, 1, 1, 1}, 6));
+    }
 }
